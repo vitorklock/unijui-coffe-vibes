@@ -24,12 +24,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="overflow-hidden h-full dark">
+    <html
+      lang="en"
+      className="overflow-hidden h-full dark"
+    >
       <body
         className={cn(
           geistSans.variable,
           geistMono.variable,
-          "antialiased h-full"
+          "antialiased h-full bg-surface-700"
         )}
       >
         {children}

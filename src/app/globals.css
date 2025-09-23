@@ -89,6 +89,8 @@
 
 :root {
 
+    --navbar-height: 56px;
+
     --cv-neutral: #5D5152;
     --cv-warning: #D3A601;
     --cv-wrong: #D84E4B;
