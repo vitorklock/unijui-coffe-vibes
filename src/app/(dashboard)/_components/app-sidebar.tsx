@@ -33,7 +33,10 @@ const items = [
 
 function AppSidebar() {
   return (
-    <Sidebar collapsible="icon">{/* NENHUM className de position aqui */}
+    <Sidebar
+      className="absolute"
+      collapsible="icon"
+    >{/* NENHUM className de position aqui */}
       <SidebarHeader className="px-3 py-3">
         <div className="flex items-center gap-2">
           <div className="size-8 rounded-xl border flex items-center justify-center">☕️</div>
