@@ -20,7 +20,7 @@ const coffeeData: Record<
     title: "Cappuccino",
     subtitle: "Drizzled with Caramel",
     rating: 4.5,
-    image: "/names/capuccino.png",
+    image: "/logo/names/capuccino.png",
     description:
       "A single espresso shot poured into hot foamy milk, topped with cocoa powder and caramel drizzle.",
     recipe: [
@@ -37,7 +37,7 @@ const coffeeData: Record<
     title: "Latte",
     subtitle: "Smooth & Creamy",
     rating: 4.7,
-    image: "/names/latte.png",
+    image: "logos/names/latte.png",
     description:
       "A delicious blend of espresso and steamed milk with a thin layer of foam.",
     recipe: [
@@ -60,12 +60,12 @@ export default function CoffeeDetailPage() {
   const [selectedMilk, setSelectedMilk] = useState<string | null>(null);
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-[#6e5c5b] to-[#b7a6a3] flex flex-col items-center p-4">
+    <div className="w-full min-h-screen flex flex-col items-center p-4">
       <div className="bg-[#231b1b] rounded-3xl w-full max-w-md shadow-2xl border border-[#3a2c2c]/40 flex flex-col items-center overflow-hidden transition-all">
         {/* Imagem + botão voltar */}
         <div className="relative w-full">
           <a
-            href="/dashboard"
+            href="/coffes"
             aria-label="Voltar"
             className="absolute top-3 left-3 z-10 bg-[#231b1b]/70 rounded-full p-2 hover:scale-105 transition"
           >
