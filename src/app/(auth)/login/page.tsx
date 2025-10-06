@@ -1,10 +1,33 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
+
+const DEFAULT_USER = {
+  username: "admin",
+  password: "123456",
+};
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
+
+  function handleLogin(e: React.FormEvent) {
+    e.preventDefault();
+    if (
+      username === DEFAULT_USER.username &&
+      password === DEFAULT_USER.password
+    ) {
+      // Usuário autenticado!
+      router.push("/coffes"); // Redireciona para a dashboard
+    } else {
+      setError("Usuário ou senha inválidos.");
+    }
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#2a2222] to-[#7e6d6d]">
@@ -21,17 +44,21 @@ export default function LoginPage() {
 
         <div className="w-full border-t border-[#3a2c2c]/40 mb-8"></div>
 
-        <form className="w-full flex flex-col gap-5">
+        <form className="w-full flex flex-col gap-5" onSubmit={handleLogin}>
           <label className="text-[#e7dacb] text-lg font-medium mb-1">Login</label>
           <input
             type="text"
             placeholder="Username"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
             className="w-full rounded-md px-4 py-2 bg-[#e7dacb] text-[#231b1b] placeholder-[#7e6d6d] focus:outline-none focus:ring-2 focus:ring-[#b8a78a] transition"
           />
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               className="w-full rounded-md px-4 py-2 bg-[#e7dacb] text-[#231b1b] placeholder-[#7e6d6d] focus:outline-none focus:ring-2 focus:ring-[#b8a78a] transition pr-10"
             />
             <button
@@ -50,6 +77,7 @@ export default function LoginPage() {
           >
             LOGIN
           </button>
+          {error && <span className="text-red-400 text-sm">{error}</span>}
         </form>
 
         <button className="mt-4 text-[#e7dacb]/70 text-sm hover:underline transition">
