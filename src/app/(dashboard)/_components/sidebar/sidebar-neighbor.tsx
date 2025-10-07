@@ -18,7 +18,7 @@ export function SidebarNeighbor({ className, children, ...rest }: Props) {
       className={
         cn(
           "w-full",
-          rest,
+          className,
           open ?
             "pl-[calc(var(--sidebar-width)/2)]"
             : "pl-[calc(var(--sidebar-width)/4)]"

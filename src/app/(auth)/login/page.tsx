@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
 
 const DEFAULT_USER = {
   username: "admin",
@@ -83,6 +84,16 @@ export default function LoginPage() {
         <button className="mt-4 text-[#e7dacb]/70 text-sm hover:underline transition">
           Forgot your password
         </button>
+
+        <p className="mt-4 text-sm text-primary text-center">
+          Don&apos;t have an account?{" "}
+          <Link
+            href="/register"
+            className="font-semibold underline hover:text-primary-hover focus:outline-none focus:ring-2 focus:ring-primary-focus rounded"
+          >
+            Create account
+          </Link>
+        </p>
 
         <div className="w-full border-t border-dashed border-[#3a2c2c]/40 mt-10"></div>
       </div>

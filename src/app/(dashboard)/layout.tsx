@@ -9,10 +9,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <AppSidebar />
       <SidebarInset className="h-full">
         <SidebarNeighbor
-          className="flex justify-center h-full"
+          className="h-full"
         >
           <Header />
-          <div className="h-[calc(100%-var(--navbar-height))] w-full max-w-[1600px] overflow-y-auto px-6 py-6">
+          <div className="h-[calc(100%-var(--navbar-height))] w-full max-w-[1600px] max-h-[calc(100%-var(--navbar-height))] px-6 py-6">
             {children}
           </div>
         </SidebarNeighbor>
