@@ -4,23 +4,14 @@ import {
   Sidebar,
   SidebarHeader,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarGroupContent,
-  SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarRail,
 } from "@/components/ui/sidebar";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Home, Inbox, BarChart3, Settings, HelpCircle, HomeIcon, HeartIcon, BellIcon } from "lucide-react";
-import Link from "next/link";
-import React, { ReactElement, ReactNode } from "react";
+import { HomeIcon, HeartIcon, BellIcon, DoorOpenIcon } from "lucide-react";
+import React, { } from "react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 
 interface SidebarProps extends React.ComponentProps<typeof Sidebar> {
 
@@ -67,14 +58,13 @@ export function AppSidebar({ ...props }: SidebarProps) {
       </SidebarHeader>
 
       <SidebarContent
-        className="px-2"
+        className="px-2 flex flex-col justify-between *:list-none"
       >
         <SidebarGroup className="w-full">
           <SidebarGroupContent>
             {items.map((item) => (
               <SidebarMenuItem
                 key={item.title}
-                className="list-none"
               >
                 <SidebarMenuButton asChild>
                   <a href={item.url}>
@@ -84,6 +74,18 @@ export function AppSidebar({ ...props }: SidebarProps) {
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <a href="/welcome">
+                  <DoorOpenIcon />
+                  <span>Sair</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
