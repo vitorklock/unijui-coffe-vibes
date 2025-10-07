@@ -43,14 +43,16 @@ export default function CoffeeDetail({
   const recipeOpen = !!selectedMilk;
 
   return (
-    <div className={cn("w-full p-4", className)}>
+    <div
+      className={cn(
+        "w-full p-4 flex gap-6",
+        className
+      )}
+    >
       <Card className="w-full max-w-md mx-auto overflow-hidden rounded-3xl bg-surface-700 border border-surface-600/40 shadow-2xl">
         {/* Hero image (shrinks when recipe opens) */}
         <div
-          className={cn(
-            "relative w-full overflow-hidden transition-[height] duration-300 ease-in-out",
-            recipeOpen ? "h-[60px]" : "h-[260px]"
-          )}
+          className="relative w-full overflow-hidden transition-[height] duration-300 ease-in-out h-[260px]"
         >
           <Button
             asChild
@@ -70,11 +72,13 @@ export default function CoffeeDetail({
           {/* Title row */}
           <div className="flex items-start justify-between">
             <div>
-              <h1 className="text-2xl font-serif text-primary capitalize">{coffee.title}</h1>
-              <p className="text-primary text-sm">{coffee.subtitle}</p>
-              <div className="flex items-center gap-1 mt-1 text-primary text-sm">
-                <Star size={16} className="inline-block text-primary fill-current" />
-                {coffee.rating}
+              <h2 className="text-2xl font-serif text-primary capitalize">{coffee.title}</h2>
+              <div className="flex gap-4">
+                <p className="text-primary text-sm">{coffee.subtitle}</p>
+                <div className="flex items-center gap-1 text-primary text-xs">
+                  <Star size={10} className="inline-block text-warning fill-current" />
+                  {coffee.rating}
+                </div>
               </div>
             </div>
 
@@ -124,27 +128,26 @@ export default function CoffeeDetail({
               })}
             </div>
           </div>
-
-          {/* Recipe (scrollable) */}
-          {recipeOpen && (
-            <div className="mt-6 bg-primary text-surface-700 rounded-xl shadow-md">
-              <div className="p-4">
-                <h3 className="text-lg font-bold mb-2">
-                  {coffee.title} with {selectedMilk}
-                </h3>
-              </div>
-
-              <ScrollArea className="max-h-72">
-                <ol className="list-decimal list-inside space-y-2 text-sm px-4 pb-4 pr-6">
-                  {coffee.recipe.map((step, idx) => (
-                    <li key={idx}>{step.replace(/milk/gi, selectedMilk!)}</li>
-                  ))}
-                </ol>
-              </ScrollArea>
-            </div>
-          )}
         </CardContent>
       </Card>
+      {/* Recipe (scrollable) */}
+      {recipeOpen && (
+        <div className="mt-6 bg-primary text-surface-700 rounded-xl shadow-md flex-grow">
+          <div className="p-4">
+            <h3 className="text-lg font-bold mb-2">
+              {coffee.title} with {selectedMilk}
+            </h3>
+          </div>
+
+          <ScrollArea className="max-h-72">
+            <ol className="list-decimal list-inside space-y-2 text-sm px-4 pb-4 pr-6">
+              {coffee.recipe.map((step, idx) => (
+                <li key={idx}>{step.replace(/milk/gi, selectedMilk!)}</li>
+              ))}
+            </ol>
+          </ScrollArea>
+        </div>
+      )}
     </div>
   );
 }

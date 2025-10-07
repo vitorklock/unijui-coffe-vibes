@@ -1,7 +1,5 @@
-// components/CoffeCard.tsx
 "use client";
 
-import Link from "next/link";
 import { Star } from "lucide-react";
 import type { Coffe } from "@/types/coffe";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,24 +9,37 @@ import React from "react";
 
 interface CoffeCardProps extends React.HTMLAttributes<HTMLDivElement> {
   coffee: Coffe;
-  href?: string;
   overlay?: React.ReactNode;
 }
 
 export default function CoffeCard({
   coffee,
-  href,
   className,
   overlay,
   onClick,
   ...rest
 }: CoffeCardProps) {
-  const content = (
+
+  // <div
+  //   {...rest}
+  //   onClick={onClick}
+  //   className={cn(
+  //     "group cursor-pointer block w-full rounded-2xl focus:outline-none"
+  //   )}
+  //   aria-label={`${coffee.title} details`}
+  // >
+  //   {content}
+  // </div>
+
+  return (
     <Card
+      aria-label={`${coffee.title} details`}
+      {...rest}
       className={cn(
-        "relative overflow-hidden rounded-2xl bg-surface-700 border border-surface-600/40 hover:shadow-lg transition-shadow",
+        "group cursor-pointer relative overflow-hidden rounded-2xl bg-surface-700 border border-surface-600/40 hover:shadow-lg transition-shadow focus:outline-none",
         className
       )}
+      onClick={onClick}
     >
       <AspectRatio ratio={16 / 9} className="relative">
         <img
@@ -67,7 +78,6 @@ export default function CoffeCard({
             </h3>
             <p className="text-primary/80 text-xs truncate">{coffee.subtitle}</p>
           </div>
-          {/* rating moved to frosted square */}
         </div>
       </CardContent>
 
@@ -93,41 +103,4 @@ export default function CoffeCard({
     </Card>
   );
 
-  // Prefer onClick (open modal). If not provided, fall back to href navigation.
-  if (onClick) {
-    return (
-      <div
-        {...rest}
-        onClick={onClick}
-        className={cn(
-          "group cursor-pointer block w-full rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-        )}
-        aria-label={`${coffee.title} details`}
-      >
-        {content}
-      </div>
-    );
-  }
-
-  return href ? (
-    <Link
-      href={href}
-      className={cn(
-        "group block rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-      )}
-      aria-label={`${coffee.title} details`}
-      {...(rest as any)}
-    >
-      {content}
-    </Link>
-  ) : (
-    <div
-      {...rest}
-      className={cn(
-        "group block w-full rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-      )}
-    >
-      {content}
-    </div>
-  );
 }

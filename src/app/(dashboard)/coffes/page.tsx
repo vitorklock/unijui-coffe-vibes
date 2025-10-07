@@ -1,7 +1,7 @@
 // app/coffes/page.tsx
 "use client";
 
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { COFFE_RECIPES } from "@/mocks";
 import CoffeCard from "./_components/coffe-card";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -16,35 +16,52 @@ const arraify = (cs: Record<string, Coffe>) => {
 
 const arrayfied = arraify(COFFE_RECIPES);
 
-const recipes = [
-  arrayfied,
-  arrayfied,
-  arrayfied,
-  arrayfied,
-  arrayfied,
-  arrayfied,
-  arrayfied,
-  arrayfied,
-].flat();
+// const recipes = [
+//   arrayfied,
+//   arrayfied,
+//   arrayfied,
+//   arrayfied,
+//   arrayfied,
+//   arrayfied,
+//   arrayfied,
+//   arrayfied,
+// ].flat();
+
+const TAB_TRIGGER_CLASS = "h-24 rotate-180 [writing-mode:vertical-rl] text-sm font-medium";
 
 function Page() {
   const [open, setOpen] = React.useState(false);
-  const [selectedKey, setSelectedKey] = React.useState<string | null>(null);
+  const [selectedCoffe, setSelectedCoffe] = React.useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
 
-  const coffee = selectedKey ? COFFE_RECIPES[selectedKey] : null;
+  const coffes = useMemo(() => {
+    return selectedCategory ? arrayfied.filter(r => r.category === selectedCategory) : arrayfied;
+  }, [selectedCategory]);
+
+  const coffee = selectedCoffe ? COFFE_RECIPES[selectedCoffe] : null;
 
   return (
     <div className="flex gap-6 h-full">
 
       {/* Category picker */}
-      <Tabs defaultValue="Cappuccino" orientation="vertical" className="flex">
-        {/* Sidebar Tabs */}
+      <Tabs
+        orientation="vertical"
+        className="flex"
+        onValueChange={setSelectedCategory}
+      >
         <TabsList className="flex flex-col h-full w-8 border-r border-border">
+          <TabsTrigger
+            className={TAB_TRIGGER_CLASS}
+            // @ts-expect-error
+            value={null}
+          >
+            All
+          </TabsTrigger>
           {COFFE_CATEGORIES.map((c) => (
             <TabsTrigger
               key={c}
               value={c}
-              className="h-24 rotate-180 [writing-mode:vertical-rl] text-sm font-medium"
+              className={TAB_TRIGGER_CLASS}
             >
               {c}
             </TabsTrigger>
@@ -53,13 +70,13 @@ function Page() {
       </Tabs>
 
       {/* Grid of coffees */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 flex-grow overflow-y-auto">
-        {recipes.map((c) => (
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 w-full max-h-full mb-auto overflow-y-auto">
+        {coffes.map((c, i) => (
           <CoffeCard
-            key={c.key}
+            key={`${c.key}-${i}`}
             coffee={c}
             onClick={() => {
-              setSelectedKey(c.key);
+              setSelectedCoffe(c.key);
               setOpen(true);
             }}
           />
@@ -73,7 +90,7 @@ function Page() {
           if (!next) {
             setOpen(false);
             // small delay to avoid flicker before unmount
-            setTimeout(() => setSelectedKey(null), 150);
+            setTimeout(() => setSelectedCoffe(null), 150);
           } else {
             setOpen(true);
           }
@@ -81,8 +98,7 @@ function Page() {
       >
         <DialogContent
           className={cn(
-            "p-0 gap-0 border-none bg-transparent shadow-none",
-            "sm:max-w-[520px] w-full"
+            "p-0 gap-0 border-none bg-transparent shadow-none w-full max-w-[80%]"
           )}
         >
           {coffee ? (
@@ -92,7 +108,7 @@ function Page() {
               // showBackButton={false}  
               backHref="/coffes"
               onBack={() => {
-                setSelectedKey(null);
+                setSelectedCoffe(null);
                 setOpen(false);
               }}
             />

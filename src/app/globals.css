@@ -157,7 +157,7 @@
     --primary-foreground: oklch(0.205 0 0);
     --secondary: oklch(0.269 0 0);
     --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
+    --muted: var(--cv-neutral);
     --muted-foreground: oklch(0.708 0 0);
     --accent: oklch(0.269 0 0);
     --accent-foreground: oklch(0.985 0 0);
@@ -188,4 +188,43 @@
     body {
         @apply bg-background text-foreground;
     }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Scrollbar track (background) */
+::-webkit-scrollbar-track {
+    background: var(--cv-surface-700);
+    border-radius: 10px;
+}
+
+/* Scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+    background: #605460;
+    /* surface.500 */
+    border-radius: 10px;
+    border: 2px solid #201520;
+    /* Adds spacing between thumb and track */
+}
+
+/* Scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #807380;
+    /* surface.400 */
+}
+
+/* Scrollbar corner (where two scrollbars meet) */
+::-webkit-scrollbar-corner {
+    background: #191019;
+    /* surface.800 */
+}
+
+/* Firefox scrollbar (modern browsers) */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #605460 #201520;
+    /* thumb color | track color */
 }
