@@ -1,7 +1,7 @@
 "use client";
 
 import { Star } from "lucide-react";
-import type { Coffe } from "@/types/coffe";
+import type { Coffe } from "@/entities/coffe";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { cn } from "@/lib/utils";

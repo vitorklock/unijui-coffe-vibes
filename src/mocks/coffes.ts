@@ -1,4 +1,4 @@
-import { Coffe } from "@/types/coffe";
+import { Coffe } from "@/entities/coffe";
 
 export const COFFE_RECIPES: Record<string, Coffe> = {
     cappuccino: {

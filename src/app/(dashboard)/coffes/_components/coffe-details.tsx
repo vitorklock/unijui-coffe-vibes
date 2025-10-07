@@ -4,7 +4,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Heart, Star } from "lucide-react";
-import type { Coffe } from "@/types/coffe";
+import type { Coffe } from "@/entities/coffe";
 
 // shadcn/ui
 import { Card, CardContent } from "@/components/ui/card";

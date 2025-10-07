@@ -7,7 +7,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import CoffeeDetail from "./_components/coffe-details";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Coffe, COFFE_CATEGORIES } from "@/types/coffe";
+import { Coffe, COFFE_CATEGORIES } from "@/entities/coffe";
 import CoffeCardSkeleton from "./_components/coffe-skeletons";
 import { getCoffees } from "@/app/actions/get-coffes";
 
