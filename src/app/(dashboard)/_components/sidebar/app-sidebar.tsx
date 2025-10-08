@@ -82,7 +82,7 @@ export function AppSidebar({ ...props }: SidebarProps) {
               <SidebarMenuButton asChild>
                 <a href="/welcome">
                   <DoorOpenIcon />
-                  <span>Sair</span>
+                  <span>Exit</span>
                 </a>
               </SidebarMenuButton>
             </SidebarMenuItem>

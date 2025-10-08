@@ -26,7 +26,7 @@ export default function LoginPage() {
       // Usuário autenticado!
       router.push("/coffes"); // Redireciona para a dashboard
     } else {
-      setError("Usuário ou senha inválidos.");
+      setError("Invalid username or password.");
     }
   }
 
